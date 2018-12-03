@@ -16,3 +16,8 @@ This repository provides an implemenation of Lorentz embeddings as described in 
 - [ ] Obtain same mAP/MR on EuroVoc Data
 - [ ] Obtain same mAP/MR on ACM data
 - [ ] Obtain same mAP/MR on MeSH data
+
+## Visualization
+Training visualization of 3D Lorentz embeddings trained on Wordnet mammals projected into the 2D Poincaré disk.
+
+![training visualization]('./media/visualize.gif')
