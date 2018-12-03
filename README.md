@@ -9,7 +9,7 @@ This repository provides an implemenation of Lorentz embeddings as described in 
 ## Tasks to Complete
 - [x] Implement the basic model
 - [x] Get model to converge on WordNet mammals
-- [x] Visualize results in Poincar&#00E9; space
+- [x] Visualize results in Poincaré space
 - [x] Train the model on WordNet noun hierarchy
 - [ ] Obtain same mAP/MR on WordNet nouns
 - [ ] Obtain same mAP/MR on WordNet verbs
