@@ -20,4 +20,4 @@ This repository provides an implemenation of Lorentz embeddings as described in 
 ## Visualization
 Training visualization of 3D Lorentz embeddings trained on Wordnet mammals projected into the 2D Poincaré disk.
 
-![training visualization]('media/visualize.gif')
+![training visualization](media/visualize.gif)
