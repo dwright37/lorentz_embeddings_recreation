@@ -27,25 +27,12 @@ class LorentzEmbedding(nn.Module):
         #Place the vectors on the manifold
         components = self.embeddings.state_dict()['weight'][:,1:]
         self.embeddings.weight = nn.Parameter(th.cat([th.sqrt(th.sum(components * components, dim=1, keepdim=True) + 1), components], dim=1))
-        #weights = self.embeddings.state_dict()['weight']
-        #if th.isnan(weights).any():
-        #    print("nans")
-        #    exit()
 
     def forward(self, inputs):
-        #w = self.embeddings.weight
-        #lip = LorentzInnerProduct()(w,w)
-        #if (lip > -0.5).any() or (lip < -1.5).any():
-        #    print("OFF THE MANIFOLD")
-        #    print(lip)
-        #    exit()
-
         e = self.embeddings(inputs)
         o = e[:,1:,:]
         s = e[:,0,:].unsqueeze(1).expand_as(o)
         dists = self.dist()(s, o).squeeze(-1)
-        #if th.isnan(dists).any():
-        #    print("dists nans")
         return -dists
 
     def loss(self, preds, targets, weight=None, size_average=True):

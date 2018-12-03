@@ -43,15 +43,15 @@ class DatasetReader(Dataset):
         left, right, weight = self.samples[i]
         negs = set()
         nnegs = self.nnegs
-        #if self.burnin:
-        #    nnegs *= 0.1
+        if self.burnin:
+            nnegs *= 0.1
         tries = 0
         while tries < self.max_tries and len(negs) < nnegs:
-            #if self.burnin:
-            #    n = randint(0, len(self.unigram_table))
-            #    n = int(self.unigram_table[n])
-            #else:
-            n = randint(0, len(self.entities))
+            if self.burnin:
+                n = randint(0, len(self.unigram_table))
+                n = int(self.unigram_table[n])
+            else:
+                n = randint(0, len(self.entities))
             
             if self.weights[left][n] < weight:
                 negs.add(n)
