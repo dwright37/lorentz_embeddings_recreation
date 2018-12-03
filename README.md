@@ -21,3 +21,8 @@ This repository provides an implemenation of Lorentz embeddings as described in 
 Training visualization of 3D Lorentz embeddings trained on Wordnet mammals projected into the 2D Poincaré disk.
 
 ![training visualization](media/visualize.gif)
+
+These heatmaps show how the distance between points scales as a point approaches the edge of the manifold.
+
+![distance from edge](media/distance_from_edge.png)
+![distance from center](media/distance_from_center.png)
