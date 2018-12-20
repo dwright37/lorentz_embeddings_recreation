@@ -53,8 +53,8 @@ class LorentzDistance(nn.Module):
 ########################################
 # Riemannian SGD
 ########################################
-def lorentz_retraction(gradient):
-    g = th.eye(gradient.shape[-1])
+def lorentz_retraction(gradient, device='cpu'):
+    g = th.eye(gradient.shape[-1]).to(device)
     g[0,0] = -1.0
     return th.mm(gradient, g)
 
@@ -68,8 +68,9 @@ def expmap(theta, v):
     return val
 
 class RiemannianSGD(Optimizer):
-    def __init__(self, params, lr=0.001):
+    def __init__(self, params, lr=0.001, device='cpu'):
         defaults = dict(lr=lr)
+        self.device = device
         super(RiemannianSGD, self).__init__(params, defaults)
     
     def step(self, lr=None):
@@ -89,14 +90,14 @@ class RiemannianSGD(Optimizer):
 
                     param_data = p.data[grad_indices]
                     
-                    newpoints = expmap(param_data, -lr*proj(param_data, lorentz_retraction(grad_data)))
+                    newpoints = expmap(param_data, -lr*proj(param_data, lorentz_retraction(grad_data, device=self.device)))
                     components = newpoints[:,1:]
                     dim0 = th.sqrt(th.sum(components * components, dim=1, keepdim=True) + 1)
                     newpoints2 = th.cat([dim0, components], dim=1)
                     p.data[grad_indices] = newpoints2
                 else:
                     param_data = p.data
-                    newpoints = expmap(param_data, -lr*proj(param_data, lorentz_retraction(gradient)))
+                    newpoints = expmap(param_data, -lr*proj(param_data, lorentz_retraction(gradient, device=self.device)))
                     components = newpoints[:,1:]
                     dim0 = th.sqrt(th.sum(components * components, dim=1, keepdim=True) + 1)
                     newpoints2 = th.cat([dim0, components], dim=1)
