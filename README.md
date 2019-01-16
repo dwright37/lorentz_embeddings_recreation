@@ -11,7 +11,7 @@ This repository provides an implemenation of Lorentz embeddings as described in 
 - [x] Get model to converge on WordNet mammals
 - [x] Visualize results in Poincaré space
 - [x] Train the model on WordNet noun hierarchy
-- [ ] Obtain same mAP/MR on WordNet nouns
+- [ ] Obtain same mAP/MR on WordNet nouns (currently 8.97 MR and 0.7315 mAP with d == 5)
 - [ ] Obtain same mAP/MR on WordNet verbs
 - [ ] Obtain same mAP/MR on EuroVoc Data
 - [ ] Obtain same mAP/MR on ACM data
